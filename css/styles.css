@@ -1548,7 +1548,188 @@ footer {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(232, 101, 10, 0.4);
 }
+/* ============================================
+   SERVICIOS V2 (2 tarjetas + elemento apoyo)
+============================================ */
+.servicios-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-bottom: 32px;
+}
 
+.servicio-card-v2 {
+    background-color: var(--blanco);
+    border-radius: 16px;
+    padding: 40px 32px;
+    box-shadow: var(--sombra);
+    transition: var(--transicion);
+    border: 1px solid var(--gris-medio);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.servicio-card-v2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--naranja) 0%, var(--naranja-hover) 100%);
+    transform: scaleX(0);
+    transition: var(--transicion);
+}
+
+.servicio-card-v2:hover::after {
+    transform: scaleX(1);
+}
+
+.servicio-card-v2:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-hover);
+}
+
+.servicio-card-v2 h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--negro);
+}
+
+.servicio-descripcion {
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+    line-height: 1.75;
+	text-align: justify;
+}
+
+/* Sectores (Tarjeta 1) */
+.servicio-sectores {
+    background-color: var(--gris-claro);
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.servicio-sectores-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--negro);
+    margin-bottom: 12px;
+}
+
+.servicio-sectores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.servicio-sectores-grid span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+}
+
+.servicio-sectores-grid span i {
+    color: var(--naranja);
+    font-size: 0.85rem;
+    width: 16px;
+}
+
+/* Reutiliza .servicio-prendas y .servicio-prendas-grid del CSS existente */
+/* Solo ajuste de columnas para 8 items */
+.servicio-card-v2 .servicio-prendas-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.servicio-card-v2 .servicio-bullets {
+    margin-bottom: 4px;
+}
+
+.servicio-card-v2 .btn-primary {
+    margin-top: auto;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Elemento de apoyo */
+.servicios-apoyo {
+    background: linear-gradient(135deg, var(--negro) 0%, var(--negro-suave) 100%);
+    border-radius: 16px;
+    padding: 40px 48px;
+    border: 1px solid rgba(232, 101, 10, 0.3);
+}
+
+.servicios-apoyo-content {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.servicios-apoyo-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--naranja) 0%, var(--naranja-hover) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.servicios-apoyo-icon i {
+    color: var(--blanco);
+    font-size: 1.6rem;
+}
+
+.servicios-apoyo-texto {
+    flex: 1;
+}
+
+.servicios-apoyo-texto h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 8px;
+}
+
+.servicios-apoyo-texto p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.btn-apoyo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25D366;
+    color: var(--blanco);
+    padding: 14px 28px;
+    border-radius: var(--radio);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: var(--transicion);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.btn-apoyo:hover {
+    background-color: #1da851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-apoyo i {
+    font-size: 1.2rem;
+}
 /* ============================================
    RESPONSIVE
 ============================================ */
@@ -1659,6 +1840,25 @@ footer {
     .stat-item:last-child {
         border-bottom: none;
     }
+	 /* Servicios v2 */
+    .servicios-grid-v2 {
+        grid-template-columns: 1fr;
+    }
+
+    .servicios-apoyo-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .servicios-apoyo {
+        padding: 32px 24px;
+    }
+
+    .btn-apoyo {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1673,5 +1873,12 @@ footer {
     }
     .stats {
         padding: 24px 0;
+    }
+	.servicio-card-v2 .servicio-prendas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .servicio-sectores-grid {
+        grid-template-columns: 1fr;
     }
 }
