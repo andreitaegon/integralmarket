@@ -367,7 +367,7 @@ nav {
 	margin-top: 8px;
     line-height: 1.2;
 	text-wrap: balance; /* Distribuye el texto simétricamente */
-    max-width: 580px
+    max-width: 580px;
 	text-align: center;
 }
 
@@ -822,7 +822,7 @@ nav {
     max-height: 60px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(100%);
+    filter: grayscale(40%);
     opacity: 0.6;
     transition: var(--transicion);
 }
@@ -1268,7 +1268,7 @@ nav {
 .radio-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 8}px;
 }
 
 .radio-item {
