@@ -844,69 +844,56 @@ nav {
    DIFERENCIADORES
 ============================================ */
 .diferenciadores {
-    background: linear-gradient(135deg, var(--negro) 0%, var(--negro-suave) 100%);
+    background: linear-gradient(135deg, #FFF7F2 0%, #FFFFFF 60%, #FFF0E8 100%);
+    border-top: 3px solid var(--naranja);
 }
 
 .diferenciadores .section-title {
-    color: var(--blanco);
+    color: var(--negro);
 }
 
 .diferenciadores .section-subtitle {
-    color: rgba(255,255,255,0.7);
+    color: var(--texto-secundario);
 }
 
 .diferenciadores-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    text-align: justify;
 }
 
 .diferenciador-card {
-    background-color: rgba(255,255,255,0.05);
+    background-color: var(--blanco);
     border-radius: 16px;
     padding: 36px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid var(--gris-medio);
     transition: var(--transicion);
     display: flex;
     gap: 24px;
     align-items: flex-start;
+    box-shadow: var(--sombra);
 }
 
 .diferenciador-card:hover {
-    background-color: rgba(255,255,255,0.08);
+    background-color: #FFF7F2;
     border-color: var(--naranja);
     transform: translateY(-4px);
-}
-
-.diferenciador-icon {
-    width: 56px;
-    height: 56px;
-    background: linear-gradient(135deg, var(--naranja) 0%, var(--naranja-hover) 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.diferenciador-icon i {
-    color: var(--blanco);
-    font-size: 1.3rem;
+    box-shadow: var(--sombra-hover);
 }
 
 .diferenciador-content h3 {
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--blanco);
+    color: var(--negro);
     margin-bottom: 12px;
 }
 
 .diferenciador-content p {
-    color: rgba(255,255,255,0.7);
+    color: var(--texto-secundario);
     font-size: 0.92rem;
     line-height: 1.7;
 }
-
 /* ============================================
    PROCESO
 ============================================ */
@@ -973,6 +960,7 @@ nav {
     font-size: 0.82rem;
     color: var(--texto-secundario);
     line-height: 1.5;
+	text-align: justify;
 }
 
 .paso-conector {
@@ -1331,10 +1319,9 @@ footer {
 }
 
 .footer-logo-img {
-    height: 44px;
+    height: 80px;
     width: auto;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
+    object-fit: contain;   
 }
 
 .footer-logo-placeholder {
@@ -1764,8 +1751,9 @@ footer {
     .servicios-grid { grid-template-columns: 1fr; }
     .catalogo-grid { grid-template-columns: repeat(2, 1fr); }
     .clientes-grid { grid-template-columns: repeat(2, 1fr); }
-    .diferenciadores-grid { grid-template-columns: 1fr; }
-    .proceso-steps { flex-direction: column; align-items: center; }
+    .diferenciadores-grid { grid-template-columns: 1fr; text-align: justify;}
+	
+    .proceso-steps { flex-direction: column; align-items: center;text-align: justify; }
     .paso-conector { transform: rotate(90deg); }
     .testimonios-grid { grid-template-columns: 1fr; }
     .formulario-wrapper { grid-template-columns: 1fr; }
