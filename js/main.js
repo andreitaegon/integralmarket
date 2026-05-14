@@ -45,13 +45,24 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+		 // Si el href es solo "#" va al inicio
+        if (href === '#') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            return;
+        }
+
+        // Para el resto de enlaces busca el elemento
+        const target = document.querySelector(href);
         if (target) {
             const headerHeight = document.querySelector('header').offsetHeight;
             const targetPosition = target.offsetTop - headerHeight - 20;
             window.scrollTo({
                 top: targetPosition,
-                behavior: 'smooth'
+                behavior: 'smooth'		
             });
         }
     });
