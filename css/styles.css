@@ -1256,7 +1256,7 @@ nav {
 .radio-group {
     display: flex;
     flex-direction: column;
-    gap: 8}px;
+    gap: 8px};
 }
 
 .radio-item {
@@ -1270,6 +1270,10 @@ nav {
 
 .radio-item input[type="radio"] {
     accent-color: var(--naranja);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 .form-submit {
@@ -1753,8 +1757,99 @@ footer {
     .clientes-grid { grid-template-columns: repeat(2, 1fr); }
     .diferenciadores-grid { grid-template-columns: 1fr; text-align: justify;}
 	
-    .proceso-steps { flex-direction: column; align-items: center;text-align: justify; }
-    .paso-conector { transform: rotate(90deg); }
+ .proceso-steps {
+        flex-direction: column;
+        align-items: stretch;      /* ocupa todo el ancho */
+        gap: 0;
+        padding: 0;
+    }
+ 
+    .paso {
+        display: flex;
+        flex-direction: row;       /* número + contenido en fila */
+        align-items: flex-start;
+        text-align: left;
+        min-width: unset;
+        max-width: 100%;
+        gap: 16px;
+        padding: 20px 16px;
+        background-color: var(--blanco);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        box-shadow: var(--sombra);
+        border-left: 4px solid var(--naranja);
+    }
+ 
+    /* Columna izquierda: número + icono apilados */
+    .paso-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+ 
+    .paso-numero {
+        margin: 0;                 /* quita el margin: 0 auto */
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+ 
+    .paso-icon {
+        margin: 0;
+        width: 40px;
+        height: 40px;
+    }
+ 
+    .paso-icon i {
+        font-size: 1rem;
+    }
+ 
+    /* Columna derecha: título + texto */
+    .paso-right {
+        flex: 1;
+    }
+ 
+    .paso h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+        color: var(--negro);
+    }
+ 
+    .paso p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--texto-secundario);
+        text-align: left;
+    }
+ 
+    /* Conector vertical entre pasos */
+    .paso-conector {
+        transform: none;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 36px;        /* alineado con el centro del número */
+        margin: -6px 0;
+        color: var(--naranja);
+        font-size: 1rem;
+    }
+ 
+    .paso-conector i {
+        transform: rotate(90deg);
+        display: block;
+    }
+ 
+    /* CTA centrado */
+    .proceso-cta {
+        margin-top: 8px;
+        text-align: center;
+    }
+ 
+    .proceso-cta .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
     .testimonios-grid { grid-template-columns: 1fr; }
     .formulario-wrapper { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
@@ -1868,5 +1963,36 @@ footer {
 
     .servicio-sectores-grid {
         grid-template-columns: 1fr;
+    }
+	 .paso {
+        padding: 16px 14px;
+        gap: 14px;
+    }
+ 
+    .paso-numero {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+ 
+    .paso-icon {
+        width: 36px;
+        height: 36px;
+    }
+ 
+    .paso-icon i {
+        font-size: 0.9rem;
+    }
+ 
+    .paso h3 {
+        font-size: 0.95rem;
+    }
+ 
+    .paso p {
+        font-size: 0.85rem;
+    }
+ 
+    .paso-conector {
+        padding-left: 31px;
     }
 }
