@@ -163,7 +163,7 @@
                     </div>
                     <div class="diferenciador-content">
                         <h3>Sabemos lo que necesita cada sector</h3>
-                        <p>Industrial, salud, seguridad, cocina — cada sector exige materiales, cortes y acabados específicos. 15 años de experiencia nos permiten asesorarte desde el inicio.</p>
+                        <p>Industrial, corporativo, cocina, salud, seguridad privada — cada sector exige materiales, cortes y acabados específicos. 15 años de experiencia nos permiten asesorarte desde el inicio.</p>
                     </div>
                 </div>
             </div>
@@ -203,7 +203,7 @@
 						<div class="servicio-sectores-grid">
 							<span><i class="fas fa-industry"></i> Industrial</span>
 							<span><i class="fas fa-heartbeat"></i> Salud</span>
-							<span><i class="fas fa-briefcase"></i> Ejecutivo</span>
+							<span><i class="fas fa-briefcase"></i> Corporativo</span>
 							<span><i class="fas fa-shield-alt"></i> Seguridad privada</span>
 							<span><i class="fas fa-utensils"></i> Cocina</span>
 						</div>
@@ -324,142 +324,525 @@
         </div>
     </section>
  -->
-    <!-- ============================================
-         6. PORTAFOLIO
-    ============================================ -->
-    <section class="section-padding" id="portafolio" style="background-color: var(--gris-claro);">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">Nuestro trabajo habla por nosotros</h2>
-                <p class="section-subtitle">Bordados de precisión y dotaciones empresariales para sectores que exigen calidad</p>
-            </div>
-            <div class="catalogo-filtros">
-                <button class="filtro-btn active" data-filter="todos">Todos</button>
-                <button class="filtro-btn" data-filter="dotacion">Dotaciones</button>
-                <button class="filtro-btn" data-filter="bordado">Bordados</button>
+
+<!-- ============================================
+     6. PORTAFOLIO
+============================================ -->
+	<section class="section-padding" id="portafolio" style="background-color: var(--gris-claro);">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="section-title">Nuestro trabajo habla por nosotros</h2>
+				<p class="section-subtitle">Bordados de precisión y dotaciones empresariales para sectores que exigen calidad</p>
+			</div>
+
+			<div class="catalogo-filtros">
+				<button class="filtro-btn active" data-filter="todos">Todos</button>
+				<button class="filtro-btn" data-filter="dotacion">Dotaciones</button>
+				<button class="filtro-btn" data-filter="bordado">Bordados</button>
 				<button class="filtro-btn" data-filter="industrial">Industrial</button>
-                <button class="filtro-btn" data-filter="salud">Salud</button>
-                <button class="filtro-btn" data-filter="seguridad">Seguridad</button>
-                <button class="filtro-btn" data-filter="accesorios">Accesorios</button>
-            </div>
-            <div class="catalogo-grid">
- 
-                <div class="producto-card" data-category="bordado industrial">
-                    <img src="images/bordado-hoodie.jpg" alt="Bordado en hoodies corporativos" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">🧵 Bordado Industrial</p>
-                        <h3>Bordado en hoodies corporativos</h3>
-                        <p>Personalización con bordado en hoodies para equipos de trabajo.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
-			               
-                <div class="producto-card" data-category="bordado industrial">
-                    <img src="images/bordado-camisa.jpg" alt="Bordado en camisa" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">🧵 Bordado Industrial</p>
-                        <h3>Bordado en camisa seguridad industrial</h3>
-                        <p>Personalización con bordado de alta fidelidad.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
- 
-                <div class="producto-card" data-category="bordado accesorios">
-                    <img src="images/bordado-gorra.jpg" alt="Bordado en gorras corporativas" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">🧵 Bordado Industrial</p>
-                        <h3>Bordado en gorras corporativas</h3>
-                        <p>Gorras personalizadas con bordado de alta precisión para empresas.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
- 
-				<div class="producto-card" data-category="bordado industrial">
-                    <img src="images/bordado-maquina.jpg" alt="Bordado en uniforme industrial" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">🧵 Bordado Industrial</p>
-                        <h3>Bordado en uniforme industrial</h3>
-                        <p>Logo bordado sobre uniforme de trabajo para sector industrial.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
+				<button class="filtro-btn" data-filter="corporativo">Corporativo</button>
+				<button class="filtro-btn" data-filter="cocina">Cocina</button>
+				<button class="filtro-btn" data-filter="salud">Salud</button>
+				<button class="filtro-btn" data-filter="seguridad">Seguridad</button>
+				<button class="filtro-btn" data-filter="accesorios">Accesorios</button>
+			</div>
+
+			<div class="catalogo-grid" id="catalogoGrid">
+
 				
-                <div class="producto-card" data-category="dotacion salud">
-                    <img src="images/dotacion-saluduniforme.jpeg" alt="Uniforme sector salud bordado" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">🎯 Solución Completa</p>
-                        <h3>Uniforme sector salud bordado</h3>
-                        <p>Dotación personalizada para personal médico y asistencial con bordado institucional.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
- 
-                <div class="producto-card" data-category="dotacion seguridad">
-                    <img src="images/dotacion-seguridaduniforme.jpg" alt="Uniforme seguridad privada bordado" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">🎯 Solución Completa</p>
-                        <h3>Uniforme seguridad privada</h3>
-                        <p>Dotación para personal de seguridad con bordado corporativo de alta durabilidad.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
- 
-                <div class="producto-card" data-category="dotacion industrial">
-                    <img src="images/dotacion-industrialvarios.jpg" alt="Dotación industrial completa" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">👔 Dotación Empresarial</p>
-                        <h3>Dotación industrial completa</h3>
-                        <p>Solución integral de dotación para sector industrial con personalización por bordado.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
- 
-                <div class="producto-card" data-category="dotacion accesorios industrial salud">
-                    <img src="https://images.unsplash.com/photo-1622445275576-721325763afe?w=400&q=80" alt="Accesorios corporativos bordados" class="producto-imagen">
-                    <div class="producto-info">
-                        <p class="producto-categoria">👔 Dotación Empresarial</p>
-                        <h3>Accesorios corporativos bordados</h3>
-                        <p>Morrales y canguros personalizados con bordado para equipos empresariales.</p>
-                        <a href="#contacto" class="btn-outline">Quiero algo similar</a>
-                    </div>
-                </div>
- 
-            </div>
-        </div>
-    </section>
+				<!-- ================================
+					 DOTACIONES (4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- D1 -->
+				<div class="producto-card" data-category="dotacion">
+					<img src="images/dotacion-industrialvarios.jpg"
+						 alt="Dotación industrial completa"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">👔 Dotación Empresarial</p>
+						<h3>Dotación sector industrial</h3>
+						<p>Solución integral de dotación para sector industrial con bordado.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+
+				<!-- D2 -->
+				<div class="producto-card" data-category="dotacion">
+					<img src="images/dotacion-saluduniforme.jpg"
+						 alt="Dotación sector salud"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">👔 Dotación Empresarial</p>
+						<h3>Dotación sector salud</h3>
+						<p>Uniformes completos para personal médico y asistencial.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+				<!-- D3 -->	
+				<div class="producto-card" data-category="dotacion">
+					<img src="images/dotacion-seguridaduniforme.jpg"
+						 alt="Dotación seguridad privada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">👔 Dotación Empresarial</p>
+						<h3>Dotación seguridad privada</h3>
+						<p>Uniformes para personal de seguridad privada.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- D4 -->					
+				<div class="producto-card" data-category="dotacion">
+					<img src="images/dotacion-cocinachef.jpg"
+						 alt="Dotación para cocina"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">👔 Dotación Empresarial</p>
+						<h3>Dotación para restaurantes</h3>
+						<p>Uniformes completos para brigadas de cocina y servicio.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- ================================
+					 BORDADOS (4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- B1 -->
+				<div class="producto-card" data-category="bordado">
+					<img src="images/bordado-hoodie.jpg"
+						 alt="Bordado en hoodie corporativo"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🧵 Bordado Industrial</p>
+						<h3>Bordado en hoodies</h3>
+						<p>Personalización con bordado para equipos de trabajo.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+					
+				<!-- B2 -->			
+				<div class="producto-card" data-category="bordado">
+					<img src="images/bordado-uniformechef.jpg"
+						 alt="Bordado en uniforme chef"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🧵 Bordado Industrial</p>
+						<h3>Bordado en uniformes</h3>
+						<p>Personalización en uniforme para personal de cocina.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- B3 -->
+				<div class="producto-card" data-category="bordado">
+					<img src="images/bordado-camisa.jpg"
+						 alt="Bordado en camisa industrial"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🧵 Bordado Industrial</p>
+						<h3>Bordado en camisas</h3>
+						<p>Personalización con bordado en camisas de trabajo.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+						
+				<!-- B4 -->
+				<div class="producto-card" data-category="bordado">
+					<img src="images/bordado-gorra.jpg"
+						 alt="Gorra corporativa bordada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🧵 Bordado Industrial</p>
+						<h3>Bordado en gorras</h3>
+						<p>Gorras personalizadas con bordado de alta precisión.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+
+				<!-- ================================
+					 INDUSTRIAL (4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- I1 -->
+				<div class="producto-card" data-category="industrial">
+					<img src="images/industrial-overol.jpeg"
+						 alt="Overol industrial bordado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏭 Sector Industrial</p>
+						<h3>Overol industrial bordado</h3>
+						<p>Overol con logo bordado para personal de mantenimiento y planta.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+				<!-- I2 -->
+				<div class="producto-card" data-category="industrial">
+					<img src="images/industrial-chalecoreflectivo.jpeg"
+						 alt="Chaleco industrial bordado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏭 Sector Industrial</p>
+						<h3>Chaleco industrial bordado</h3>
+						<p>Chaleco de trabajo personalizado con bordado corporativo.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- I3 -->				
+				<div class="producto-card" data-category="industrial">
+					<img src="images/industrial-camisareflectivo.jpeg"
+						 alt="Camisa industrial bordada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏭 Sector Industrial</p>
+						<h3>Camisa industrial bordada</h3>
+						<p>Camisa de trabajo con reflectivo para equipos industriales.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+				<!-- I4 -->							
+				<div class="producto-card" data-category="industrial">
+					<img src="images/industrial-pantalon.jpg"
+						 alt="Uniforme industrial completo"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏭 Sector Industrial</p>
+						<h3>Pantalon industrial</h3>
+						<p>Pantalon de trabajo bordado para operarios y personal de planta.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+
+				<!-- ================================
+					 CORPORATIVO (4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- E1 -->
+				<div class="producto-card" data-category="corporativo">
+					<img src="images/corporativo-camisa.jpg"
+						 alt="Camisa bordada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">💼 Sector Corporativo</p>
+						<h3>Camisa bordada</h3>
+						<p>Camisas bordadas con logo para equipos ejecutivos.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- E2 -->
+				<div class="producto-card" data-category="corporativo">
+					<img src="images/corporativo-chaqueta.jpg"
+						 alt="Chaqueta bordada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">💼 Sector Corporativo</p>
+						<h3>Chaqueta bordada</h3>
+						<p>Chaquetas corporativas para equipos comerciales y directivos.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+				
+				<!-- E3 -->
+				<div class="producto-card" data-category="corporativo">
+					<img src="images/corporativo-sastrecompleto.jpg"
+						 alt="Uniforme corporativo completo"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">💼 Sector Corporativo</p>
+						<h3>Uniforme completo</h3>
+						<p>Dotación ejecutiva para imagen corporativa profesional.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+
+				<!-- E4 -->
+				<div class="producto-card" data-category="corporativo">
+					<img src="images/corporativo-hoodie.jpg"
+						 alt="Hoodie bordado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">💼 Sector Corporativo</p>
+						<h3>Hoodie bordado</h3>
+						<p>Hoodie corporativos para equipos de ventas y atención al cliente.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- ================================
+					 COCINA (4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- C1 -->
+				<div class="producto-card" data-category="cocina">
+					<img src="images/cocina-delantales.jpg"
+						 alt="Delantal de cocina bordado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🍳 Sector Cocina</p>
+						<h3>Delantales bordados</h3>
+						<p>Delantales personalizados con bordado para restaurantes.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- C2 -->
+				<div class="producto-card" data-category="cocina">
+					<img src="images/cocina-uniformechef.jpg"
+						 alt="Uniforme de chef bordado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🍳 Sector Cocina</p>
+						<h3>Uniforme de chef bordado</h3>
+						<p>Uniforme para chef personalizadas con bordado de alta durabilidad.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- C3 -->
+				<div class="producto-card" data-category="cocina">
+					<img src="images/cocina-delantales2.jpg"
+						 alt="Delantal personalizado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🍳 Sector Cocina</p>
+						<h3>Delantales personalizados</h3>
+						<p>Dotación de acuerdo al estilo de cada negocio.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- C4 -->
+				<div class="producto-card" data-category="cocina">
+					<img src="images/cocina-uniformechef2.jpg"
+						 alt="Dotación para chef completa"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🍳 Sector Cocina</p>
+						<h3>Dotación cocina completa</h3>
+						<p>Uniformes y delantales bordados para equipos de cocina.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- ================================
+					 SALUD (4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- S1 -->
+				<div class="producto-card" data-category="salud">
+					<img src="images/salud-batamedico.jpg"
+						 alt="Bata médica bordada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏥 Sector Salud</p>
+						<h3>Bata médica </h3>
+						<p>Batas institucionales personalizadas para personal médico.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+				<!-- S2 -->
+				<div class="producto-card" data-category="salud">
+					<img src="images/salud-uniformecompleto.jpg"
+						 alt="Uniforme médico mujer"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏥 Sector Salud</p>
+						<h3>Uniforme médico mujer</h3>
+						<p>Dotación para personal médico con logo institucional bordado.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+				<!-- S3 -->
+				<div class="producto-card" data-category="salud">
+					<img src="images/salud-uniformecompleto2.jpg"
+						 alt="Uniforme salud hombre"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏥 Sector Salud</p>
+						<h3>Uniforme médico hombre</h3>
+						<p>Uniformes completos bordados para equipos de salud en clínicas.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- S4 -->
+				<div class="producto-card" data-category="salud">
+					<img src="images/salud-bataestetica.jpg"
+						 alt="Bata personalizada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🏥 Sector Salud</p>
+						<h3>Bata personalizada</h3>
+						<p>Batas de diferentes diseños bordadas para clínicas y hospitales.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+				
+
+				<!-- ================================
+					 SEGURIDAD PRIVADA(4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- SE1 -->
+				<div class="producto-card" data-category="seguridad">
+					<img src="images/seguridad-uniforme.jpg"
+						 alt="Uniforme seguridad bordado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🛡️ Sector Seguridad Privada</p>
+						<h3>Uniforme seguridad</h3>
+						<p>Dotación para personal de seguridad con bordado de alta durabilidad.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- SE2 -->
+				<div class="producto-card" data-category="seguridad">
+					<img src="images/seguridad-camisa.jpg"
+						 alt="Camisa seguridad bordada"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🛡️ Sector Seguridad Privada</p>
+						<h3>Camisa seguridad</h3>
+						<p>Camisas para personal de vigilancia con logo bordado corporativo.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- SE3 -->
+				<div class="producto-card" data-category="seguridad">
+					<img src="images/seguridad-chaqueta.jpg"
+						 alt="Chaqueta seguridad bordado"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🛡️ Sector Seguridad Privada</p>
+						<h3>Chaqueta seguridad</h3>
+						<p>Chaqueta para seguridad privada personalizados con bordado.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- SE4 -->
+				<div class="producto-card" data-category="seguridad">
+					<img src="images/seguridad-uniforme2.jpg"
+						 alt="Dotación seguridad completa"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🛡️ Sector Seguridad Privada</p>
+						<h3>Dotación seguridad</h3>
+						<p>Uniformes completos bordados para empresas de seguridad privada.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- ================================
+					 ACCESORIOS (4 tarjetas exclusivas)
+				================================ -->
+
+				<!-- A1 -->
+				<div class="producto-card" data-category="accesorios">
+					<img src="images/accesorio-gorrabordada.jpg"
+						 alt="Gorras corporativas bordadas"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🎒 Accesorios Corporativos</p>
+						<h3>Gorras</h3>
+						<p>Gorras personalizadas con bordado para empresas.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- A2 -->
+				<div class="producto-card" data-category="accesorios">
+					<img src="images/accesorio-morralbordado.jpg"
+						 alt="Morrales corporativos bordados"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🎒 Accesorios Corporativos</p>
+						<h3>Morrales</h3>
+						<p>Morrales personalizados para equipos empresariales.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- A3 -->
+				<div class="producto-card" data-category="accesorios">
+					<img src="images/accesorio-cangurobordado.jpg"
+						 alt="Canguros bordados corporativos"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🎒 Accesorios Corporativos</p>
+						<h3>Canguros</h3>
+						<p>Canguros y riñoneras personalizadas.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+				<!-- A4 -->
+				<div class="producto-card" data-category="accesorios">
+					<img src="images/accesorio-bordado.jpg"
+						 alt="Set accesorios corporativos"
+						 class="producto-imagen">
+					<div class="producto-info">
+						<p class="producto-categoria">🎒 Accesorios Corporativos</p>
+						<h3>Accesorios</h3>
+						<p>Gorras, morrales y canguros bordados.</p>
+						<a href="#contacto" class="btn-outline">Quiero algo similar</a>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- CTA debajo del portafolio -->
+			<div class="portafolio-cta">
+				<p>¿Ves algo que necesitas o tienes algo diferente en mente?</p>
+				<a href="#contacto" class="btn-primary">
+					<i class="fas fa-file-invoice"></i>
+					Solicitar cotización
+				</a>
+			</div>
+
+		</div>
+	</section>
  
     <!-- ============================================
          7. TESTIMONIOS
     ============================================ -->
-    <!-- ============================================
-     7. TESTIMONIOS — VERSIÓN TEMPORAL
-     Reemplaza todo el bloque de la sección testimonios
-     Las tarjetas están ocultas con display:none
-     Cuando tengas testimonios reales, elimina el
-     style="display:none" del div testimonios-grid
-============================================ -->
+
 	<section class="section-padding">
 		<div class="container">
 			<div class="text-center">
-				<h2 class="section-title">Encuéntranos en Google</h2>
-				<p class="section-subtitle">Busca Integral Market y lee la experiencia de nuestros clientes.</p>
+				<h2 class="section-title">La experiencia de quienes ya trabajaron con nosotros</h2>
+				<p class="section-subtitle">Empresas reales que han confiado su imagen a Integral Market.</p>
 			</div>
-	 
-			<!-- Tarjetas ocultas temporalmente — descomentar cuando haya testimonios reales -->
-			<div class="testimonios-grid" style="display:none">
+		
+			<div class="testimonios-grid" >
 				<div class="testimonio-card">
 					<div class="testimonio-estrellas">
 						<i class="fas fa-star"></i><i class="fas fa-star"></i>
 						<i class="fas fa-star"></i><i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 					</div>
-					<p class="testimonio-frase">"Lo que más nos sorprendió fue la calidad del bordado"</p>
-					<p class="testimonio-texto">Llevamos años trabajando con Integral Market para el bordado de nuestros uniformes. La calidad es consistente en cada pedido y el resultado siempre refleja exactamente nuestro logo.</p>
+					<p class="testimonio-frase">"Un aliado confiable que siempre cumple con altos estándares"</p>
+					<p class="testimonio-texto">Durante varios años nos han acompañado en la elaboración de dotaciones y chaquetas corporativas, destacándose por la calidad de sus prendas, la excelencia de sus insumos y su compromiso con el servicio al cliente.</p>
 					<div class="testimonio-autor">
-						<div class="autor-avatar">CM</div>
+						<div class="autor-avatar">LG</div>
 						<div class="autor-info">
-							<span>Carlos Martínez</span>
-							<span>Gerente de Operaciones · Empresa de Logística</span>
+							<span>Liliana Guevara</span>
+							<span>Gerente RRHH · Corredor Empresarial</span>
 						</div>
 					</div>
 				</div>
@@ -469,32 +852,17 @@
 						<i class="fas fa-star"></i><i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 					</div>
-					<p class="testimonio-frase">"El bordado quedó exactamente como lo pedimos"</p>
-					<p class="testimonio-texto">Buscábamos un proveedor de bordado confiable para nuestros uniformes médicos y encontramos en Integral Market exactamente lo que necesitábamos. Calidad y cumplimiento en cada pedido.</p>
+					<p class="testimonio-frase">"Integral Market ha demostrado un alto nivel de calidad en la fabricación de dotaciones empresariales.."</p>
+					<p class="testimonio-texto"> Resaltamos su puntualidad en las entregas, capacidad de respuesta y disposición para atender los requerimientos de manera oportuna, factores que han contribuido al éxito de nuestras operaciones y a la satisfacción de nuestros clientes.</p>
 					<div class="testimonio-autor">
-						<div class="autor-avatar">LP</div>
+						<div class="autor-avatar">MS</div>
 						<div class="autor-info">
-							<span>Laura Pérez</span>
-							<span>Directora Administrativa · Clínica Privada</span>
+							<span>Mauricio Sanabria</span>
+							<span>Gerente · Dotar Cor</span>
 						</div>
 					</div>
 				</div>
-				<div class="testimonio-card">
-					<div class="testimonio-estrellas">
-						<i class="fas fa-star"></i><i class="fas fa-star"></i>
-						<i class="fas fa-star"></i><i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-					</div>
-					<p class="testimonio-frase">"Son nuestro aliado estratégico de bordado"</p>
-					<p class="testimonio-texto">Nosotros vendemos dotaciones pero no tenemos maquinaria de bordado propia. Integral Market se convirtió en nuestra solución. Alta capacidad, calidad impecable y discreción total en el proceso.</p>
-					<div class="testimonio-autor">
-						<div class="autor-avatar">JR</div>
-						<div class="autor-info">
-							<span>Jorge Rodríguez</span>
-							<span>Gerente Comercial · Empresa de Dotaciones</span>
-						</div>
-					</div>
-				</div>
+			
 			</div>
 	 
 			<!-- Google Business Profile — siempre visible -->
@@ -582,7 +950,7 @@
 						<div class="paso-icon"><i class="fas fa-file-invoice-dollar"></i></div>
 					</div>
 					<div class="paso-right">
-						<h3>Cotización a tu medida</h3>
+						<h3>Cotización a medida</h3>
 						<p>Te enviamos una propuesta ajustada a tu volumen, tipo de prenda y tiempo de entrega.</p>
 					</div>
 				</div>
@@ -638,7 +1006,7 @@
 						<div class="paso-icon"><i class="fas fa-box-open"></i></div>
 					</div>
 					<div class="paso-right">
-						<h3>Alistamiento y entrega</h3>
+						<h3>Alistamiento&Entrega</h3>
 						<p>Empacamos y enviamos tu pedido en Bogotá o a cualquier parte de Colombia.</p>
 					</div>
 				</div>
