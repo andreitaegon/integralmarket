@@ -1,32 +1,54 @@
 // ============================================
-// FILTROS DEL PORTAFOLIO
+// FILTROS DEL PORTAFOLIO CON ALEATORIO
 // ============================================
 const filtros = document.querySelectorAll('.filtro-btn');
-const productos = document.querySelectorAll('.producto-card');
+const todasLasTarjetas = Array.from(document.querySelectorAll('.producto-card'));
+const MAX_TODOS = 8;
 
+function ocultarTodas() {
+    todasLasTarjetas.forEach(card => card.classList.add('hidden'));
+}
+
+function mostrarTodos() {
+    ocultarTodas();
+
+    // Toma TODAS las tarjetas, las baraja y muestra 8
+    const barajadas = [...todasLasTarjetas]
+        .sort(() => Math.random() - 0.5);
+
+    barajadas.slice(0, MAX_TODOS)
+        .forEach(card => card.classList.remove('hidden'));
+}
+
+function mostrarFiltro(filtro) {
+    ocultarTodas();
+
+    // Busca coincidencia exacta con la categoría
+    const coinciden = todasLasTarjetas.filter(card =>
+        card.getAttribute('data-category') === filtro
+    );
+
+    coinciden.forEach(card => card.classList.remove('hidden'));
+}
+
+// Inicializar con aleatorio al cargar
+mostrarTodos();
+
+// Eventos de los botones
 filtros.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Actualizar botón activo
         filtros.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        // Filtrar productos
         const filtro = btn.getAttribute('data-filter');
 
-        productos.forEach(producto => {
-            const categorias = producto.getAttribute('data-category');
-
-            if (filtro === 'todos') {
-                producto.classList.remove('hidden');
-            } else if (categorias && categorias.includes(filtro)) {
-                producto.classList.remove('hidden');
-            } else {
-                producto.classList.add('hidden');
-            }
-        });
+        if (filtro === 'todos') {
+            mostrarTodos();
+        } else {
+            mostrarFiltro(filtro);
+        }
     });
 });
-
 // ============================================
 // HEADER SCROLL EFFECT
 // ============================================
