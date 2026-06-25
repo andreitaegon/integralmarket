@@ -193,3 +193,89 @@ if (form) {
         }
     });
 }
+
+// ============================================
+// CARRUSEL DE TESTIMONIOS
+// ============================================
+const wrapper = document.querySelector('.carrusel-slides-wrapper');
+const slides = document.querySelectorAll('.carrusel-slide');
+const dots = document.querySelectorAll('.carrusel-dot');
+const btnPrev = document.querySelector('.carrusel-prev');
+const btnNext = document.querySelector('.carrusel-next');
+
+if (wrapper && slides.length > 0) {
+
+    let slideActual = 0;
+    const totalSlides = slides.length;
+
+    function getSlidesVisibles() {
+        return window.innerWidth <= 768 ? 1 : 2;
+    }
+
+    function getTotalPasos() {
+        return Math.ceil(totalSlides / getSlidesVisibles());
+    }
+
+    function irASlide(index) {
+        const visibles = getSlidesVisibles();
+        const totalPasos = getTotalPasos();
+
+        if (index < 0) index = totalPasos - 1;
+        if (index >= totalPasos) index = 0;
+
+        slideActual = index;
+
+        const anchoPorSlide = 100 / visibles;
+        wrapper.style.transform =
+            `translateX(-${slideActual * anchoPorSlide * visibles}%)`;
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[slideActual]) {
+            dots[slideActual].classList.add('active');
+        }
+    }
+
+    btnPrev.addEventListener('click', () => {
+        irASlide(slideActual - 1);
+        resetAutoplay();
+    });
+
+    btnNext.addEventListener('click', () => {
+        irASlide(slideActual + 1);
+        resetAutoplay();
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            irASlide(parseInt(dot.getAttribute('data-slide')));
+            resetAutoplay();
+        });
+    });
+
+    let autoPlay = setInterval(() => irASlide(slideActual + 1), 6000);
+
+    function resetAutoplay() {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(() => irASlide(slideActual + 1), 6000);
+    }
+
+    let touchStartX = 0;
+
+    wrapper.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    wrapper.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+            irASlide(diff > 0 ? slideActual + 1 : slideActual - 1);
+            resetAutoplay();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        irASlide(0);
+    });
+
+    irASlide(0);
+}
