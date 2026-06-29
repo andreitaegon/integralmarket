@@ -11,37 +11,25 @@ function ocultarTodas() {
 
 function mostrarTodos() {
     ocultarTodas();
-
-    // Toma TODAS las tarjetas, las baraja y muestra 8
-    const barajadas = [...todasLasTarjetas]
-        .sort(() => Math.random() - 0.5);
-
-    barajadas.slice(0, MAX_TODOS)
-        .forEach(card => card.classList.remove('hidden'));
+    const barajadas = [...todasLasTarjetas].sort(() => Math.random() - 0.5);
+    barajadas.slice(0, MAX_TODOS).forEach(card => card.classList.remove('hidden'));
 }
 
 function mostrarFiltro(filtro) {
     ocultarTodas();
-
-    // Busca coincidencia exacta con la categoría
     const coinciden = todasLasTarjetas.filter(card =>
         card.getAttribute('data-category') === filtro
     );
-
     coinciden.forEach(card => card.classList.remove('hidden'));
 }
 
-// Inicializar con aleatorio al cargar
 mostrarTodos();
 
-// Eventos de los botones
 filtros.forEach(btn => {
     btn.addEventListener('click', () => {
         filtros.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const filtro = btn.getAttribute('data-filter');
-
         if (filtro === 'todos') {
             mostrarTodos();
         } else {
@@ -49,6 +37,7 @@ filtros.forEach(btn => {
         }
     });
 });
+
 // ============================================
 // HEADER SCROLL EFFECT
 // ============================================
@@ -68,24 +57,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const href = this.getAttribute('href');
-		 // Si el href es solo "#" va al inicio
         if (href === '#') {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
         }
-
-        // Para el resto de enlaces busca el elemento
         const target = document.querySelector(href);
         if (target) {
             const headerHeight = document.querySelector('header').offsetHeight;
             const targetPosition = target.offsetTop - headerHeight - 20;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'		
-            });
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     });
 });
@@ -127,7 +107,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Aplicar animación a tarjetas
 document.querySelectorAll(
     '.estandar-card, .servicio-card, .producto-card, .diferenciador-card, .testimonio-card'
 ).forEach(card => {
@@ -152,45 +131,118 @@ window.addEventListener('scroll', () => {
 
 backToTop.addEventListener('click', (e) => {
     e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // ============================================
-// VALIDACIÓN BÁSICA DEL FORMULARIO
+// VALIDACIÓN Y ENVÍO CON EMAILJS
 // ============================================
-const form = document.querySelector('form');
+
+emailjs.init('2qyPinaI397HkjdlA');
+
+const form = document.getElementById('cotizacion-form');
+const btnSubmit = document.getElementById('btn-submit');
+
 if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const nombre = form.querySelector('input[type="text"]');
-        const email = form.querySelector('input[type="email"]');
-        const whatsapp = form.querySelector('input[type="tel"]');
+        const nombre   = document.getElementById('nombre');
+        const empresa  = document.getElementById('empresa');
+        const ciudad   = document.getElementById('ciudad');
+        const whatsapp = document.getElementById('whatsapp');
+        const correo   = document.getElementById('correo');
+        const cantidad = document.getElementById('cantidad');
 
         let valido = true;
 
-        [nombre, email, whatsapp].forEach(campo => {
-            if (campo && !campo.value.trim()) {
+        [nombre, empresa, ciudad, whatsapp, correo, cantidad].forEach(campo => {
+            campo.style.borderColor = '#E5E7EB';
+        });
+
+        [nombre, empresa, ciudad, whatsapp, correo, cantidad].forEach(campo => {
+            if (!campo.value.trim()) {
                 campo.style.borderColor = '#EF4444';
                 valido = false;
-            } else if (campo) {
+            } else {
                 campo.style.borderColor = '#10B981';
             }
         });
 
-        if (valido) {
-            const btn = form.querySelector('.form-submit');
-            btn.textContent = '✅ ¡Cotización enviada!';
-            btn.style.backgroundColor = '#10B981';
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
-                btn.style.backgroundColor = '';
-                form.reset();
-            }, 3000);
+        const serviciosSeleccionados = Array.from(
+            document.querySelectorAll('input[name="servicio"]:checked')
+        ).map(cb => cb.value).join(', ');
+
+        if (!serviciosSeleccionados) {
+            valido = false;
         }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (correo.value && !emailRegex.test(correo.value)) {
+            correo.style.borderColor = '#EF4444';
+            valido = false;
+        }
+
+        if (!valido) {
+            btnSubmit.textContent = '⚠️ Completa los campos obligatorios';
+            btnSubmit.style.backgroundColor = '#EF4444';
+            setTimeout(() => {
+                btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
+                btnSubmit.style.backgroundColor = '';
+            }, 3000);
+            return;
+        }
+
+        const logoSeleccionado = document.querySelector('input[name="logo"]:checked');
+        const logoValor  = logoSeleccionado ? logoSeleccionado.value : 'No especificado';
+        const urgencia   = document.getElementById('urgencia').value || 'No especificado';
+        const mensaje    = document.getElementById('mensaje').value || 'Sin mensaje adicional';
+
+        const templateParams = {
+            nombre:   nombre.value.trim(),
+            empresa:  empresa.value.trim(),
+            cargo:    document.getElementById('cargo').value.trim() || 'No indicado',
+            ciudad:   ciudad.value.trim(),
+            whatsapp: whatsapp.value.trim(),
+            correo:   correo.value.trim(),
+            servicio: serviciosSeleccionados,
+            cantidad: cantidad.value,
+            urgencia: urgencia,
+            logo:     logoValor,
+            mensaje:  mensaje
+        };
+
+        btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        btnSubmit.disabled = true;
+        btnSubmit.style.backgroundColor = '#6B7280';
+
+        emailjs.send('service_ftrsy1f', 'template_16kzi5h', templateParams)
+            .then(function() {
+                btnSubmit.innerHTML = '✅ ¡Cotización enviada con éxito!';
+                btnSubmit.style.backgroundColor = '#10B981';
+                btnSubmit.disabled = false;
+                form.reset();
+
+                [nombre, empresa, ciudad, whatsapp, correo, cantidad].forEach(campo => {
+                    campo.style.borderColor = '#E5E7EB';
+                });
+
+                setTimeout(() => {
+                    btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
+                    btnSubmit.style.backgroundColor = '';
+                }, 5000);
+            })
+            .catch(function(error) {
+                console.error('EmailJS error:', error);
+                btnSubmit.innerHTML = '❌ Error al enviar — intenta por WhatsApp';
+                btnSubmit.style.backgroundColor = '#EF4444';
+                btnSubmit.disabled = false;
+
+                setTimeout(() => {
+                    btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
+                    btnSubmit.style.backgroundColor = '';
+                }, 5000);
+            });
     });
 }
 

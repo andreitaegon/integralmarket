@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="favicon.png">
+	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="apple-touch-icon" href="favicon.png">
 </head>
 <body>
@@ -1134,35 +1135,35 @@
                 </div>
  
                 <div class="formulario-form">
-                    <form>
+                    <form id="cotizacion-form" novalidate>
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Nombre completo <span>*</span></label>
-                                <input type="text" placeholder="Tu nombre">
+                                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
                             </div>
                             <div class="form-group">
                                 <label>Empresa <span>*</span></label>
-                                <input type="text" placeholder="Nombre de tu empresa">
+                                <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Cargo</label>
-                                <input type="text" placeholder="Tu cargo">
+                                <input type="text" id="cargo" name="cargo" placeholder="Tu cargo">
                             </div>
                             <div class="form-group">
                                 <label>Ciudad <span>*</span></label>
-                                <input type="text" placeholder="Tu ciudad">
+                                <input type="text" id="ciudad" name="ciudad" placeholder="Tu ciudad">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label>WhatsApp <span>*</span></label>
-                                <input type="tel" placeholder="+57 300 000 0000">
+                                <input type="tel" id="whatsapp" name="whatsapp" placeholder="+57 300 000 0000">
                             </div>
                             <div class="form-group">
                                 <label>Correo electrónico <span>*</span></label>
-                                <input type="email" placeholder="tu@empresa.com">
+                                <input type="email" id="correo" name="correo" placeholder="tu@empresa.com">
                             </div>
                         </div>
                         <div class="form-group">
@@ -1185,7 +1186,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Cantidad aproximada <span>*</span></label>
-                                <select>
+                                <select id="cantidad" name="cantidad" required>
                                     <option value="">Selecciona un rango</option>
                                     <option>10 a 50 prendas</option>
                                     <option>51 a 200 prendas</option>
@@ -1195,7 +1196,7 @@
                             </div>
                             <div class="form-group">
                                 <label>¿Cuándo lo necesitas?</label>
-                                <select>
+                                <select id="urgencia" name="urgencia">
                                     <option value="">Selecciona una opción</option>
                                     <option>Urgente (menos de 2 semanas)</option>
                                     <option>En el próximo mes</option>
@@ -1217,9 +1218,9 @@
                         </div>
                         <div class="form-group">
                             <label>Cuéntanos más sobre tu pedido</label>
-                            <textarea placeholder="Describe brevemente lo que necesitas..."></textarea>
+                            <textarea id="mensaje" name="mensaje" placeholder="Describe brevemente lo que necesitas...">
                         </div>
-                        <button type="submit" class="btn-primary form-submit">
+                        <button type="submit" class="btn-primary form-submit" id="btn-submit">
                             <i class="fas fa-paper-plane"></i>
                             Solicitar cotización gratuita
                         </button>
