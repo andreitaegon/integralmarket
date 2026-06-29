@@ -138,6 +138,10 @@ backToTop.addEventListener('click', (e) => {
 // VALIDACIÓN Y ENVÍO CON EMAILJS
 // ============================================
 
+// ============================================
+// VALIDACIÓN Y ENVÍO CON EMAILJS
+// ============================================
+
 emailjs.init('2qyPinaI397HkjdlA');
 
 const form = document.getElementById('cotizacion-form');
@@ -155,35 +159,54 @@ if (form) {
         const cantidad = document.getElementById('cantidad');
 
         let valido = true;
+        let camposFaltantes = [];
 
+        // Resetear estilos
         [nombre, empresa, ciudad, whatsapp, correo, cantidad].forEach(campo => {
             campo.style.borderColor = '#E5E7EB';
         });
 
-        [nombre, empresa, ciudad, whatsapp, correo, cantidad].forEach(campo => {
+        // Validar campos requeridos
+        const camposObligatorios = [
+            { campo: nombre,   nombre: 'Nombre' },
+            { campo: empresa,  nombre: 'Empresa' },
+            { campo: ciudad,   nombre: 'Ciudad' },
+            { campo: whatsapp, nombre: 'WhatsApp' },
+            { campo: correo,   nombre: 'Correo' },
+            { campo: cantidad, nombre: 'Cantidad' }
+        ];
+
+        camposObligatorios.forEach(({ campo, nombre }) => {
             if (!campo.value.trim()) {
                 campo.style.borderColor = '#EF4444';
+                camposFaltantes.push(nombre);
                 valido = false;
             } else {
                 campo.style.borderColor = '#10B981';
             }
         });
 
+        // Validar al menos un servicio
         const serviciosSeleccionados = Array.from(
             document.querySelectorAll('input[name="servicio"]:checked')
         ).map(cb => cb.value).join(', ');
 
         if (!serviciosSeleccionados) {
+            camposFaltantes.push('Servicio (¿Qué necesitas?)');
             valido = false;
         }
 
+        // Validar formato email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (correo.value && !emailRegex.test(correo.value)) {
             correo.style.borderColor = '#EF4444';
+            camposFaltantes.push('Correo (formato inválido)');
             valido = false;
         }
 
         if (!valido) {
+            console.log('❌ Campos faltantes o inválidos:', camposFaltantes);
+            alert('Faltan estos campos:\n\n• ' + camposFaltantes.join('\n• '));
             btnSubmit.textContent = '⚠️ Completa los campos obligatorios';
             btnSubmit.style.backgroundColor = '#EF4444';
             setTimeout(() => {
