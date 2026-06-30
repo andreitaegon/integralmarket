@@ -3,17 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Integral Market S.A.S. expertos dotaciones empresariales y bordado industrial en Bogotá con entregas a nivel nacional. ¿Necesitas dotaciones empresariales con bordado en Bogotá?.">
-    <title>Integral Market | Dotaciones Empresariales y Bordado Industrial en Bogotá</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="apple-touch-icon" href="favicon.png">
-</head>
-<body>
- 
+    <meta name="description" content="Integral Market S.A.S. expertos en dotaciones empresariales y bordado industrial en Bogotá con entregas a nivel nacional. ¿Necesitas dotaciones empresariales con bordado en Bogotá?.">
+	<!-- ============================================
+		 OPEN GRAPH (WhatsApp, Facebook, LinkedIn)
+	============================================ -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://integralmarket.com.co/">
+	<meta property="og:title" content="Integral Market | Dotaciones Empresariales y Bordado Industrial en Bogotá">
+	<meta property="og:description" content="Especialistas en dotaciones empresariales y bordado industrial para empresas en Colombia. Cotiza tu pedido desde Bogotá con entregas a nivel nacional.">
+	<meta property="og:image" content="https://integralmarket.com.co/images/og-image.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="es_CO">
+	<meta property="og:site_name" content="Integral Market">
+
+	<!-- ============================================
+		 TWITTER CARD
+	============================================ -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:url" content="https://integralmarket.com.co/">
+	<meta name="twitter:title" content="Integral Market | Dotaciones Empresariales y Bordado Industrial">
+	<meta name="twitter:description" content="Especialistas en dotaciones empresariales y bordado industrial para empresas en Colombia.">
+	<meta name="twitter:image" content="https://integralmarket.com.co/images/og-image.jpg">
+		<title>Integral Market | Dotaciones Empresariales y Bordado Industrial en Bogotá</title>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="icon" type="image/png" href="favicon.png">
+		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+		<link rel="apple-touch-icon" href="favicon.png">
+	
+	<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-9E2QETN2DS"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-9E2QETN2DS');
+		</script>
+	</head>
+	<body>
+	 
     <!-- ============================================
          HEADER
     ============================================ -->
@@ -1220,7 +1251,9 @@
                             <label>Cuéntanos más sobre tu pedido</label>
                             <textarea id="mensaje" name="mensaje" placeholder="Describe brevemente lo que necesitas..."></textarea>
                         </div>
-                        <button type="submit" class="btn-primary form-submit" id="btn-submit">
+						<div id="form-mensaje" class="form-mensaje" style="display:none;"></div>
+                        
+						<button type="submit" class="btn-primary form-submit" id="btn-submit">
                             <i class="fas fa-paper-plane"></i>
                             Solicitar cotización gratuita
                         </button>
@@ -1247,7 +1280,7 @@
 							class="footer-logo-img"
 						>
 					</div>
-                    <p>Bordado industrial y dotaciones empresariales desde Bogotá para toda Colombia.</p>
+                    <p>Dotaciones empresariales y Bordado industrial desde Bogotá para toda Colombia.</p>
                 </div>
                 <div class="footer-col">
 					<h4>Nuestras redes</h4>
@@ -1300,7 +1333,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Integral Market S.A.S. · NIT: 900.436.131-3 · Todos los derechos reservados</p>
+                <p>© <span id="current-year"></span> Integral Market S.A.S. · NIT: 900.436.131-3 · Todos los derechos reservados</p>
                 <div class="footer-bottom-links">
                     <a href="politica-privacidad.html">Política de privacidad</a>
                     <a href="terminos-condiciones.html">Términos y condiciones</a>
