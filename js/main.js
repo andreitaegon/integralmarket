@@ -146,10 +146,41 @@ emailjs.init('2qyPinaI397HkjdlA');
 
 const form = document.getElementById('cotizacion-form');
 const btnSubmit = document.getElementById('btn-submit');
+const formMensaje = document.getElementById('form-mensaje');
+
+function mostrarMensajeError(camposFaltantes) {
+    formMensaje.className = 'form-mensaje';
+    formMensaje.innerHTML = `
+        <strong>⚠️ Por favor completa los siguientes campos:</strong>
+        <ul>
+            ${camposFaltantes.map(campo => `<li>${campo}</li>`).join('')}
+        </ul>
+    `;
+    formMensaje.style.display = 'block';
+    
+    // Hacer scroll al mensaje
+    formMensaje.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function mostrarMensajeExito() {
+    formMensaje.className = 'form-mensaje success';
+    formMensaje.innerHTML = `
+        <strong>✅ ¡Cotización enviada con éxito!</strong>
+        Te responderemos lo más pronto posible.
+    `;
+    formMensaje.style.display = 'block';
+    formMensaje.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function ocultarMensaje() {
+    formMensaje.style.display = 'none';
+    formMensaje.innerHTML = '';
+}
 
 if (form) {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        ocultarMensaje();
 
         const nombre   = document.getElementById('nombre');
         const empresa  = document.getElementById('empresa');
@@ -157,6 +188,7 @@ if (form) {
         const whatsapp = document.getElementById('whatsapp');
         const correo   = document.getElementById('correo');
         const cantidad = document.getElementById('cantidad');
+        const checkboxGroup = document.querySelector('.checkbox-group');
 
         let valido = true;
         let camposFaltantes = [];
@@ -165,15 +197,16 @@ if (form) {
         [nombre, empresa, ciudad, whatsapp, correo, cantidad].forEach(campo => {
             campo.style.borderColor = '#E5E7EB';
         });
+        checkboxGroup.classList.remove('error');
 
         // Validar campos requeridos
         const camposObligatorios = [
-            { campo: nombre,   nombre: 'Nombre' },
+            { campo: nombre,   nombre: 'Nombre completo' },
             { campo: empresa,  nombre: 'Empresa' },
             { campo: ciudad,   nombre: 'Ciudad' },
             { campo: whatsapp, nombre: 'WhatsApp' },
-            { campo: correo,   nombre: 'Correo' },
-            { campo: cantidad, nombre: 'Cantidad' }
+            { campo: correo,   nombre: 'Correo electrónico' },
+            { campo: cantidad, nombre: 'Cantidad aproximada' }
         ];
 
         camposObligatorios.forEach(({ campo, nombre }) => {
@@ -192,7 +225,8 @@ if (form) {
         ).map(cb => cb.value).join(', ');
 
         if (!serviciosSeleccionados) {
-            camposFaltantes.push('Servicio (¿Qué necesitas?)');
+            checkboxGroup.classList.add('error');
+            camposFaltantes.push('¿Qué necesitas? (selecciona al menos una opción)');
             valido = false;
         }
 
@@ -200,22 +234,21 @@ if (form) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (correo.value && !emailRegex.test(correo.value)) {
             correo.style.borderColor = '#EF4444';
-            camposFaltantes.push('Correo (formato inválido)');
+            // Solo agregar si no estaba ya en la lista
+            if (!camposFaltantes.includes('Correo electrónico')) {
+                camposFaltantes.push('Correo electrónico (formato inválido)');
+            }
             valido = false;
         }
 
         if (!valido) {
-            console.log('❌ Campos faltantes o inválidos:', camposFaltantes);
-            alert('Faltan estos campos:\n\n• ' + camposFaltantes.join('\n• '));
-            btnSubmit.textContent = '⚠️ Completa los campos obligatorios';
-            btnSubmit.style.backgroundColor = '#EF4444';
-            setTimeout(() => {
-                btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
-                btnSubmit.style.backgroundColor = '';
-            }, 3000);
+            mostrarMensajeError(camposFaltantes);
+            btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
+            btnSubmit.style.backgroundColor = '';
             return;
         }
 
+        // ── Recopilar valores opcionales ──
         const logoSeleccionado = document.querySelector('input[name="logo"]:checked');
         const logoValor  = logoSeleccionado ? logoSeleccionado.value : 'No especificado';
         const urgencia   = document.getElementById('urgencia').value || 'No especificado';
@@ -241,30 +274,34 @@ if (form) {
 
         emailjs.send('service_ftrsy1f', 'template_16kzi5h', templateParams)
             .then(function() {
-                btnSubmit.innerHTML = '✅ ¡Cotización enviada con éxito!';
-                btnSubmit.style.backgroundColor = '#10B981';
+                mostrarMensajeExito();
+                btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
+                btnSubmit.style.backgroundColor = '';
                 btnSubmit.disabled = false;
                 form.reset();
 
+                // Limpiar bordes de validación
                 [nombre, empresa, ciudad, whatsapp, correo, cantidad].forEach(campo => {
                     campo.style.borderColor = '#E5E7EB';
                 });
+                checkboxGroup.classList.remove('error');
 
+                // Ocultar mensaje de éxito después de 8 segundos
                 setTimeout(() => {
-                    btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
-                    btnSubmit.style.backgroundColor = '';
-                }, 5000);
+                    ocultarMensaje();
+                }, 8000);
             })
             .catch(function(error) {
                 console.error('EmailJS error:', error);
-                btnSubmit.innerHTML = '❌ Error al enviar — intenta por WhatsApp';
-                btnSubmit.style.backgroundColor = '#EF4444';
+                formMensaje.className = 'form-mensaje';
+                formMensaje.innerHTML = `
+                    <strong>❌ Hubo un error al enviar</strong>
+                    Por favor escríbenos directamente por WhatsApp: <a href="https://wa.me/573105583187">+57 310 558 3187</a>
+                `;
+                formMensaje.style.display = 'block';
+                btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
+                btnSubmit.style.backgroundColor = '';
                 btnSubmit.disabled = false;
-
-                setTimeout(() => {
-                    btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
-                    btnSubmit.style.backgroundColor = '';
-                }, 5000);
             });
     });
 }
@@ -353,4 +390,11 @@ if (wrapper && slides.length > 0) {
     });
 
     irASlide(0);
+}
+// ============================================
+// AÑO DINÁMICO EN FOOTER
+// ============================================
+const yearElement = document.getElementById('current-year');
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
 }
