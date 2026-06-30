@@ -2192,3 +2192,700 @@ footer {
         transform: translateY(0);
     }
 }
+/* ============================================
+   DIFERENCIADORES — FLECHA OCULTA EN DESKTOP
+============================================ */
+.diferenciador-arrow {
+    display: none;
+}
+
+/* ============================================
+   DIFERENCIADORES — ACORDEÓN EN MÓVIL
+============================================ */
+@media (max-width: 768px) {
+
+    .diferenciador-card {
+        position: relative;
+        padding: 0;
+        gap: 0;
+        align-items: stretch;
+        overflow: hidden;
+        cursor: pointer;
+        border-left: 4px solid var(--naranja);
+        flex-wrap: wrap;
+    }
+
+    .diferenciador-card:hover {
+        background-color: var(--blanco);
+        transform: none;
+        border-color: var(--gris-medio);
+        border-left-color: var(--naranja);
+    }
+
+    /* Ícono visible siempre */
+    .diferenciador-card .diferenciador-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        margin: 18px 0 18px 20px;
+        flex-shrink: 0;
+    }
+
+    .diferenciador-card .diferenciador-icon i {
+        font-size: 1rem;
+    }
+
+    /* Contenido: header siempre visible, párrafo colapsable */
+    .diferenciador-card .diferenciador-content {
+        flex: 1;
+        min-width: 0;
+        padding: 18px 14px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .diferenciador-card .diferenciador-content h3 {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin: 0;
+        text-align: left;
+        color: var(--negro);
+    }
+
+    /* El párrafo se colapsa */
+    .diferenciador-card .diferenciador-content p {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin: 0;
+        font-size: 0.88rem;
+        line-height: 1.65;
+        text-align: left;
+        color: var(--texto-secundario);
+        transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    }
+
+    .diferenciador-card.open .diferenciador-content p {
+        max-height: 500px;
+        opacity: 1;
+        margin-top: 10px;
+    }
+
+    /* Flecha visible y animada */
+    .diferenciador-card .diferenciador-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        margin-right: 14px;
+        color: var(--naranja);
+        font-size: 0.9rem;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+        align-self: center;
+    }
+
+    .diferenciador-card.open .diferenciador-arrow {
+        transform: rotate(180deg);
+    }
+}
+/* ============================================
+   SERVICIOS — BOTÓN VER DETALLES (oculto desktop)
+============================================ */
+.servicio-toggle {
+    display: none;
+}
+
+/* ============================================
+   SERVICIOS — COLAPSAR DETALLES EN MÓVIL
+============================================ */
+@media (max-width: 768px) {
+
+    /* Tarjeta más compacta en móvil */
+    .servicio-card-v2 {
+        padding: 28px 22px;
+        gap: 14px;
+    }
+
+    .servicio-card-v2 h3 {
+        font-size: 1.1rem;
+    }
+
+    /* Mostrar el botón toggle solo en móvil */
+    .servicio-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 12px 16px;
+        background-color: var(--gris-claro);
+        border: 1px solid var(--gris-medio);
+        border-radius: var(--radio);
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.88rem;
+        color: var(--naranja);
+        transition: var(--transicion);
+    }
+
+    .servicio-toggle:hover,
+    .servicio-toggle:focus {
+        background-color: #FFF7F2;
+        outline: none;
+    }
+
+    .servicio-toggle i {
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+    }
+
+    /* Texto del botón: por defecto muestra "Ver detalles" */
+    .servicio-toggle .toggle-text-ocultar {
+        display: none;
+    }
+
+    .servicio-toggle[aria-expanded="true"] .toggle-text-mostrar {
+        display: none;
+    }
+
+    .servicio-toggle[aria-expanded="true"] .toggle-text-ocultar {
+        display: inline;
+    }
+
+    .servicio-toggle[aria-expanded="true"] i {
+        transform: rotate(180deg);
+    }
+
+    /* Detalles colapsables */
+    .servicio-detalles {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.3s ease, margin 0.3s ease;
+        margin: 0;
+    }
+
+    .servicio-toggle[aria-expanded="true"] + .servicio-detalles {
+        max-height: 2000px;
+        opacity: 1;
+        margin: 4px 0;
+    }
+
+    /* Ajustes de bullets más limpios en móvil */
+    .servicio-bullets li {
+        font-size: 0.9rem;
+    }
+
+    .servicio-descripcion {
+        font-size: 0.92rem;
+        text-align: left;
+    }
+}
+/* ============================================
+   PORTAFOLIO — IMÁGENES COMPLETAS EN MÓVIL
+============================================ */
+@media (max-width: 768px) {
+    .producto-imagen {
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        background-color: var(--gris-claro);
+        padding: 12px;
+    }
+}
+
+//* ============================================
+   PORTAFOLIO — VISTA MÓVIL (CARRUSELES POR CATEGORÍA)
+============================================ */
+
+/* En desktop el carrusel móvil está oculto SIEMPRE */
+.catalogo-mobile {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+
+    /* Ocultar el grid normal en móvil */
+    .catalogo-grid {
+        display: none !important;
+    }
+
+    /* Mostrar el carrusel móvil */
+    .catalogo-mobile {
+        display: block !important;
+    }
+
+    /* Filtros visibles todos (sin scroll horizontal) */
+    .catalogo-filtros {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 4px;
+        margin-bottom: 32px;
+    }
+
+    .filtro-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+
+    /* Ocultar botón "Todos" en móvil */
+    .filtro-btn[data-filter="todos"] {
+        display: none;
+    }
+
+    /* Cada categoría: oculta por defecto */
+    .categoria-mobile {
+        display: none;
+        margin-bottom: 8px;
+    }
+
+    /* Solo se ve la categoría activa */
+    .categoria-mobile.active {
+        display: block;
+    }
+
+    .categoria-mobile-titulo {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--negro);
+        margin-bottom: 14px;
+        padding-left: 4px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .categoria-mobile-titulo .titulo-emoji {
+        font-size: 1.2rem;
+    }
+
+    /* Track con scroll horizontal */
+    .categoria-mobile-track {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 4px 16px 12px 4px;
+        scrollbar-width: none;
+    }
+
+    .categoria-mobile-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Cada tarjeta: 85% del ancho → deja ver una pizca de la siguiente */
+    .producto-card-mobile {
+        flex: 0 0 85%;
+        scroll-snap-align: start;
+        background-color: var(--blanco);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--sombra);
+        border: 1px solid var(--gris-medio);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .producto-card-mobile .producto-imagen {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        background-color: var(--gris-claro);
+        padding: 12px;
+    }
+
+    .producto-card-mobile .producto-info {
+        padding: 14px 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .producto-card-mobile .producto-info h3 {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--negro);
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .producto-card-mobile .btn-outline {
+        margin-top: 4px;
+        text-align: center;
+        justify-content: center;
+        font-size: 0.78rem;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .producto-card-mobile {
+        flex: 0 0 82%;
+    }
+}
+
+/* ============================================
+   PROCESO — TIMELINE MÓVIL
+   Solo afecta pantallas pequeñas
+============================================ */
+@media (max-width: 768px) {
+    .proceso-steps {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+        padding-left: 0;
+        margin-bottom: 36px;
+    }
+
+    .proceso-steps::before {
+        content: '';
+        position: absolute;
+        left: 34px;
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+        background-color: rgba(232, 101, 10, 0.25);
+    }
+
+    .paso {
+        position: relative;
+        display: grid;
+        grid-template-columns: 68px 1fr;
+        gap: 0;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0 0 22px;
+        margin: 0;
+        background: transparent;
+        box-shadow: none;
+        border-left: none;
+        text-align: left;
+    }
+
+    .paso-left {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .paso-numero {
+        width: 44px;
+        height: 44px;
+        margin: 0;
+        font-size: 1rem;
+        box-shadow: 0 4px 14px rgba(232, 101, 10, 0.3);
+    }
+
+    .paso-icon {
+        display: none;
+    }
+
+    .paso-right {
+        background-color: var(--blanco);
+        border: 1px solid var(--gris-medio);
+        border-radius: 14px;
+        padding: 18px 18px 20px;
+        box-shadow: var(--sombra);
+    }
+
+    .paso h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        color: var(--negro);
+    }
+
+    .paso p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        text-align: left;
+        color: var(--texto-secundario);
+    }
+
+    .paso-conector {
+        display: none;
+    }
+
+    .proceso-cta .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   GOOGLE REVIEWS — SOLICITUD DE RESEÑAS
+============================================ */
+.google-review-request .google-rating-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--naranja) 0%, var(--naranja-hover) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.google-review-request .google-rating-icon i {
+    color: var(--blanco);
+    font-size: 1.6rem;
+}
+
+.google-review-request .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.google-review-request .btn-secondary i {
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   PROCESO — BOTÓN COMPORTAMIENTO BASE
+============================================ */
+.paso-toggle {
+    display: contents;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    color: inherit;
+    text-align: inherit;
+    cursor: default;
+    width: 100%;
+}
+
+/* Flecha oculta en desktop */
+.paso-arrow {
+    display: none;
+}
+
+/* ============================================
+   PROCESO — TIMELINE COLAPSABLE EN MÓVIL
+============================================ */
+@media (max-width: 768px) {
+
+    /* Forzar que el contenedor ocupe todo el ancho */
+    .proceso .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    /* Contenedor timeline vertical */
+    .proceso-steps {
+        position: relative;
+        display: block;
+        width: 100%;
+        gap: 0;
+        padding: 0;
+        margin: 0 0 32px 0;
+        flex-wrap: unset;
+    }
+
+    /* Línea vertical */
+    .proceso-steps::before {
+        content: '';
+        position: absolute;
+        left: 22px;
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+        background-color: rgba(232, 101, 10, 0.25);
+        z-index: 0;
+    }
+
+    /* Cada paso: full width, sin restricciones */
+    .paso {
+        position: relative;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        flex: unset;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0 0 14px 0;
+        z-index: 1;
+    }
+
+    /* Botón: flex con número fijo + tarjeta expandida */
+    .paso-toggle {
+        display: flex;
+        align-items: stretch;
+        gap: 14px;
+        width: 100%;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        font-family: inherit;
+    }
+
+    .paso-toggle:focus {
+        outline: none;
+    }
+
+    /* Columna izquierda: ancho fijo del número */
+    .paso-left {
+        flex: 0 0 44px;
+        width: 44px;
+        max-width: 44px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 12px;
+        margin: 0;
+    }
+
+    .paso-numero {
+        width: 44px;
+        height: 44px;
+        margin: 0;
+        font-size: 1rem;
+        flex-shrink: 0;
+        box-shadow: 0 4px 14px rgba(232, 101, 10, 0.3);
+    }
+
+    .paso-icon {
+        display: none;
+    }
+
+    /* COLUMNA DERECHA: ocupar TODO el espacio restante */
+    .paso-right {
+        flex: 1 1 auto;
+        width: auto;
+        max-width: none;
+        min-width: 0;
+        position: relative;
+        background-color: var(--blanco);
+        border: 1px solid var(--gris-medio);
+        border-radius: 12px;
+        padding: 16px 44px 16px 18px;
+        box-shadow: var(--sombra);
+        text-align: left;
+        margin: 0;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .paso-toggle:hover .paso-right {
+        background-color: #FFF7F2;
+    }
+
+    /* Título */
+    .paso h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin: 0;
+        color: var(--negro);
+        text-align: left;
+        line-height: 1.4;
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
+    /* Flecha */
+    .paso-arrow {
+        position: absolute;
+        top: 50%;
+        right: 14px;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        color: var(--naranja);
+        font-size: 0.85rem;
+        transition: transform 0.3s ease;
+    }
+
+    .paso-toggle[aria-expanded="true"] .paso-arrow {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    /* Estado abierto: tarjeta resaltada */
+    .paso-toggle[aria-expanded="true"] .paso-right {
+        background-color: #FFF7F2;
+        border-color: var(--naranja);
+    }
+
+    /* Texto colapsable */
+    .paso p {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 0.88rem;
+        line-height: 1.65;
+        text-align: justify;
+        color: var(--texto-secundario);
+        transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease, padding-top 0.3s ease;
+    }
+
+    .paso-toggle[aria-expanded="true"] p {
+        max-height: 400px;
+        opacity: 1;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--gris-medio);
+    }
+
+    .paso-conector {
+        display: none;
+    }
+
+    .proceso-cta {
+        margin-top: 8px;
+        text-align: center;
+    }
+
+    .proceso-cta .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   PORTAFOLIO — FIX VISIBILIDAD GRID vs MOBILE
+   (Estas reglas van AL FINAL del archivo para
+   garantizar que tengan prioridad sobre cualquier
+   otra regla anterior)
+============================================ */
+
+/* DESKTOP: solo grid visible, mobile oculto */
+@media (min-width: 769px) {
+    #catalogoGrid {
+        display: grid !important;
+    }
+    #catalogoMobile {
+        display: none !important;
+    }
+}
+
+/* MÓVIL: solo mobile visible, grid oculto */
+@media (max-width: 768px) {
+    #catalogoGrid {
+        display: none !important;
+    }
+    #catalogoMobile {
+        display: block !important;
+    }
+}
