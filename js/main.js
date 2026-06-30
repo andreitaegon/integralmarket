@@ -1,8 +1,8 @@
 // ============================================
-// FILTROS DEL PORTAFOLIO CON ALEATORIO
+// PORTAFOLIO — DESKTOP (filtros + aleatorio)
 // ============================================
 const filtros = document.querySelectorAll('.filtro-btn');
-const todasLasTarjetas = Array.from(document.querySelectorAll('.producto-card'));
+const todasLasTarjetas = Array.from(document.querySelectorAll('.catalogo-grid .producto-card'));
 const MAX_TODOS = 8;
 
 function ocultarTodas() {
@@ -25,18 +25,129 @@ function mostrarFiltro(filtro) {
 
 mostrarTodos();
 
+// ============================================
+// PORTAFOLIO — MÓVIL (carruseles por categoría)
+// ============================================
+const CATEGORIAS_MOBILE = [
+    { key: 'dotacion',    titulo: 'Dotaciones Empresariales', emoji: '👔' },
+    { key: 'bordado',     titulo: 'Bordado Industrial',       emoji: '🧵' },
+    { key: 'industrial',  titulo: 'Sector Industrial',        emoji: '🏭' },
+    { key: 'corporativo', titulo: 'Sector Corporativo',       emoji: '💼' },
+    { key: 'cocina',      titulo: 'Sector Cocina',            emoji: '🍳' },
+    { key: 'salud',       titulo: 'Sector Salud',             emoji: '🏥' },
+    { key: 'seguridad',   titulo: 'Sector Seguridad Privada', emoji: '🛡️' },
+    { key: 'accesorios',  titulo: 'Accesorios Corporativos',  emoji: '🎒' }
+];
+
+const CATEGORIA_DEFAULT_MOBILE = 'dotacion';
+
+const catalogoMobile = document.getElementById('catalogoMobile');
+
+function construirCatalogoMobile() {
+    if (!catalogoMobile) return;
+    catalogoMobile.innerHTML = '';
+
+    CATEGORIAS_MOBILE.forEach(cat => {
+        const tarjetasCat = todasLasTarjetas.filter(c =>
+            c.getAttribute('data-category') === cat.key
+        );
+        if (tarjetasCat.length === 0) return;
+
+        const seccion = document.createElement('div');
+        seccion.className = 'categoria-mobile';
+        seccion.setAttribute('data-category', cat.key);
+
+        const titulo = document.createElement('h3');
+        titulo.className = 'categoria-mobile-titulo';
+        titulo.innerHTML = `<span class="titulo-emoji">${cat.emoji}</span> ${cat.titulo}`;
+        seccion.appendChild(titulo);
+
+        const track = document.createElement('div');
+        track.className = 'categoria-mobile-track';
+
+        tarjetasCat.forEach(orig => {
+            const img = orig.querySelector('.producto-imagen');
+            const h3  = orig.querySelector('h3');
+
+            const card = document.createElement('div');
+            card.className = 'producto-card-mobile';
+            card.innerHTML = `
+                <img src="${img.src}" alt="${img.alt}" class="producto-imagen" loading="lazy">
+                <div class="producto-info">
+                    <h3>${h3.textContent}</h3>
+                    <a href="#contacto" class="btn-outline">Quiero algo similar</a>
+                </div>
+            `;
+            track.appendChild(card);
+        });
+
+        seccion.appendChild(track);
+        catalogoMobile.appendChild(seccion);
+    });
+}
+
+function mostrarCategoriaMobile(categoria) {
+    const secciones = catalogoMobile.querySelectorAll('.categoria-mobile');
+    secciones.forEach(s => {
+        s.classList.toggle('active', s.getAttribute('data-category') === categoria);
+    });
+}
+
+function activarFiltroMobile(categoria) {
+    filtros.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-filter') === categoria);
+    });
+}
+
+construirCatalogoMobile();
+
+// Mostrar categoría por defecto en móvil
+if (window.innerWidth <= 768) {
+    mostrarCategoriaMobile(CATEGORIA_DEFAULT_MOBILE);
+    activarFiltroMobile(CATEGORIA_DEFAULT_MOBILE);
+}
+
+// ============================================
+// EVENTO FILTROS (desktop y móvil)
+// ============================================
 filtros.forEach(btn => {
     btn.addEventListener('click', () => {
-        filtros.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
         const filtro = btn.getAttribute('data-filter');
-        if (filtro === 'todos') {
-            mostrarTodos();
-        } else {
-            mostrarFiltro(filtro);
+
+        // DESKTOP: filtrar tarjetas
+        if (window.innerWidth > 768) {
+            filtros.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (filtro === 'todos') {
+                mostrarTodos();
+            } else {
+                mostrarFiltro(filtro);
+            }
+            return;
         }
+
+        // MÓVIL: ignorar "todos" (está oculto pero por seguridad)
+        if (filtro === 'todos') return;
+
+        activarFiltroMobile(filtro);
+        mostrarCategoriaMobile(filtro);
     });
 });
+
+// ============================================
+// AJUSTE AL CAMBIAR DE TAMAÑO DE VENTANA
+// ============================================
+window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+        // Si no hay ninguna activa, activar la default
+        const activa = catalogoMobile.querySelector('.categoria-mobile.active');
+        if (!activa) {
+            mostrarCategoriaMobile(CATEGORIA_DEFAULT_MOBILE);
+            activarFiltroMobile(CATEGORIA_DEFAULT_MOBILE);
+        }
+    }
+});
+
 
 // ============================================
 // HEADER SCROLL EFFECT
@@ -392,9 +503,68 @@ if (wrapper && slides.length > 0) {
     irASlide(0);
 }
 // ============================================
+// ACORDEÓN DE DIFERENCIADORES (solo móvil)
+// ============================================
+const diferenciadorCards = document.querySelectorAll('.diferenciador-card');
+
+diferenciadorCards.forEach(card => {
+    card.addEventListener('click', () => {
+        // Solo funciona en pantallas móviles
+        if (window.innerWidth > 768) return;
+        
+        const isOpen = card.classList.contains('open');
+        
+        // Cerrar todas
+        diferenciadorCards.forEach(c => c.classList.remove('open'));
+        
+        // Abrir la actual si estaba cerrada
+        if (!isOpen) {
+            card.classList.add('open');
+        }
+    });
+});
+// ============================================
 // AÑO DINÁMICO EN FOOTER
 // ============================================
 const yearElement = document.getElementById('current-year');
 if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
 }
+
+// ============================================
+// TOGGLE "VER DETALLES" EN SERVICIOS (solo móvil)
+// ============================================
+const servicioToggles = document.querySelectorAll('.servicio-toggle');
+
+servicioToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        // Solo funciona en pantallas móviles
+        if (window.innerWidth > 768) return;
+        
+        e.preventDefault();
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !expanded);
+    });
+});
+
+// ============================================
+// ACORDEÓN DE PROCESO (solo móvil)
+// ============================================
+const pasoToggles = document.querySelectorAll('.paso-toggle');
+
+pasoToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        if (window.innerWidth > 768) return;
+        e.preventDefault();
+        
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        
+        // Cerrar todos los demás
+        pasoToggles.forEach(t => t.setAttribute('aria-expanded', 'false'));
+        
+        // Abrir el actual si estaba cerrado
+        if (!expanded) {
+            toggle.setAttribute('aria-expanded', 'true');
+        }
+    });
+});
