@@ -29,8 +29,8 @@ mostrarTodos();
 // PORTAFOLIO — MÓVIL (carruseles por categoría)
 // ============================================
 const CATEGORIAS_MOBILE = [
-    { key: 'dotacion',    titulo: 'Dotaciones Empresariales', emoji: '👔' },
     { key: 'bordado',     titulo: 'Bordado Industrial',       emoji: '🧵' },
+    { key: 'dotacion',    titulo: 'Dotaciones Empresariales', emoji: '👔' },
     { key: 'industrial',  titulo: 'Sector Industrial',        emoji: '🏭' },
     { key: 'corporativo', titulo: 'Sector Corporativo',       emoji: '💼' },
     { key: 'cocina',      titulo: 'Sector Cocina',            emoji: '🍳' },
@@ -39,7 +39,7 @@ const CATEGORIAS_MOBILE = [
     { key: 'accesorios',  titulo: 'Accesorios Corporativos',  emoji: '🎒' }
 ];
 
-const CATEGORIA_DEFAULT_MOBILE = 'dotacion';
+const CATEGORIA_DEFAULT_MOBILE = 'bordado';
 
 const catalogoMobile = document.getElementById('catalogoMobile');
 
@@ -159,6 +159,19 @@ window.addEventListener('scroll', () => {
     } else {
         header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
     }
+});
+
+// ============================================
+// META PIXEL — CLICS EN WHATSAPP
+// ============================================
+document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    link.addEventListener('click', function() {
+        if (typeof fbq === 'function') {
+            fbq('track', 'Contact', {
+                content_name: 'WhatsApp'
+            });
+        }
+    });
 });
 
 // ============================================
@@ -385,7 +398,12 @@ if (form) {
 
         emailjs.send('service_ftrsy1f', 'template_16kzi5h', templateParams)
             .then(function() {
-                mostrarMensajeExito();
+                //Meta Pixel - Lead
+				if (typeof fbq === 'function'){
+					fbq('track', 'Lead');
+				}
+				
+				mostrarMensajeExito();
                 btnSubmit.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar cotización gratuita';
                 btnSubmit.style.backgroundColor = '';
                 btnSubmit.disabled = false;

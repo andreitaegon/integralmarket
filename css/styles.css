@@ -2889,3 +2889,10 @@ footer {
         display: block !important;
     }
 }
+
+/* ============================================
+   REDES SOCIALES — OCULTAR TEMPORALMENTE (LinkedIn)
+============================================ */
+.social-link-hidden {
+    display: none !important;
+}
